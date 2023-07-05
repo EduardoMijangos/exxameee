@@ -22,9 +22,10 @@ export class BookController {
     return this.bookService.findOne(+id);
   }
 
-  @Get('search')
-  search(@Query('clasificacion')clasificacion: string){
-    return this.bookService.search(clasificacion);
+  @Get('search/:clasificacion')
+  async searchByClasificacion(@Param('clasificacion') clasificacion: string) {
+    const books = await this.bookService.search(clasificacion);
+    return books;
   }
 
   @Patch(':id')

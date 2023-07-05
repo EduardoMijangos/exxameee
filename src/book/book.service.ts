@@ -47,9 +47,11 @@ async create(createBook: CreateBookDto) {
     return `Elimninado el libro${id} book`;
   }
 
-  async search(termino: string){
-    const book = await this.bookRepository.find(
-      {where:{title: Like(`%${termino}%`)}});
-    return book;
+  async search(termino: string) {
+    const books = await this.bookRepository.find({
+      where: { clasificacion: Like(`%${termino}%`) }
+    });
+    return books;
   }
+  
 }
